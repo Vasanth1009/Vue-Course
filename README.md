@@ -1,3 +1,5 @@
 # Vue-Course
 
-### Learning Vue And Build A amazing App
+## **Basics**
+  1. Data Binding 
+  
