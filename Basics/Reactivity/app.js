@@ -49,8 +49,9 @@ const app = Vue.createApp({
     },
     resetInput() {
       this.name = '';
+      this.lastName = '';
     }
   },
 });
 
-app.mount('#events');
+app.mount('#reactivity');

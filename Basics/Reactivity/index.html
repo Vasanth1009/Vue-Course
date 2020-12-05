@@ -14,18 +14,18 @@
   </head>
   <body>
     <header>
-      <h1>Vue Events</h1>
+      <h1>Vue Reactivity</h1>
     </header>
-    <section id="events">
-      <h2>Events in Action</h2> 
-      <button v-on:click="add(1)">Add</button>
-      <button v-on:click="subtract(1)">Subtract</button>
+    <section id="reactivity">
+      <h2>Reactivity in Action</h2> 
+      <button @click="add(1)">Add</button>
+      <button @click="subtract(1)">Subtract</button>
       <p>Result: {{ counter }}</p>
       <!-- <input type="text" v-bind:value="name" v-on:input="setName"> -->
       <!-- v-bind:value and v-on:input ==> v-model -->
       <input type="text" v-model="name">
       <input type="text" v-model="lastName">
-      <button v-on:click="resetInput">Reset</button>
+      <button @click="resetInput">Reset</button>
       <p>Your Name: {{ fullName }}</p>
     </section>
   </body>
