@@ -6,3 +6,4 @@
   3. Reactivity
   4. Dynamic Styling
   5. Conditional Content and Lists
+  6. Monster Slayer Game
