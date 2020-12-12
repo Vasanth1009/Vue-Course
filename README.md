@@ -8,3 +8,4 @@
   5. Conditional Content and Lists
   6. Monster Slayer Game
   7. Behind Scenes using refs
+  8. Components
