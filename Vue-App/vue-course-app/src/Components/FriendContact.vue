@@ -1,9 +1,9 @@
 <template>
   <li>
-    <h2>{{ name }} {{ favorite === "1" ? "(Favorite)" : "" }}</h2>
-    <button @click="showAndHideDetails">{{ details ? "Hide" : "Show" }} Details</button>
+    <h2>{{ name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
+    <button @click="showAndHideDetails">{{ details ? 'Hide' : 'Show' }} Details</button>
     <button @click="showAndHideFavorite">
-      {{ favorite === "1" ? "Hide" : "Show" }} Favorite
+      {{ isFavorite === true ? 'Remove' : 'Add' }} Favorite
     </button>
     <ul v-if="details">
       <li><strong>Phone: </strong>{{ phoneNumber }}</li>
@@ -14,11 +14,46 @@
 
 <script>
 export default {
-  props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  // props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    emailAddress: {
+      type: String,
+      required: true,
+    },
+    isFavorite: {
+      type: Boolean,
+      required: false,
+      default: false,
+      validator: function (value) {
+        return value === true || value === false;
+      },
+    },
+  },
+  // emits: ['friend-favorite'],
+  emits: {
+    'friend-favorite': function (id) {
+      if (id) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
   data() {
     return {
       details: false,
-      favorite: this.isFavorite,
     };
   },
   methods: {
@@ -26,11 +61,7 @@ export default {
       this.details = !this.details;
     },
     showAndHideFavorite() {
-      if (this.favorite === "1") {
-        this.favorite = "0";
-      } else {
-        this.favorite = "1";
-      }
+      this.$emit('friend-favorite', this.id);
     },
   },
 };

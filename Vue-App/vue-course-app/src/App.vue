@@ -3,12 +3,17 @@
     <header>
       <h1>FriendList</h1>
     </header>
+    <!-- <new-friend></new-friend> -->
     <ul>
       <friend-contact
-        name="Manuel Lorenz"
-        phone-number="093453 2352"
-        email-address="asfas@gmail.com"
-        is-favorite="1"
+        v-for="friend in friendList"
+        :key="friend.id"
+        :id="friend.id"
+        :name="friend.name"
+        :phone-number="friend.phone"
+        :email-address="friend.email"
+        :is-favorite="friend.isFavorite"
+        @friend-favorite="favoriteStatus"
       ></friend-contact>
     </ul>
   </section>
@@ -20,31 +25,41 @@ export default {
     return {
       friendList: [
         {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "01234 5678 991",
-          email: "manuel@localhost.com",
+          id: 'manuel',
+          name: 'Manuel Lorenz',
+          phone: '01234 5678 991',
+          email: 'manuel@localhost.com',
+          isFavorite: true,
         },
         {
-          id: "julie",
-          name: "Julie Jones",
-          phone: "09876 543 221",
-          email: "julie@localhost.com",
+          id: 'julie',
+          name: 'Julie Jones',
+          phone: '09876 543 221',
+          email: 'julie@localhost.com',
+          isFavorite: false,
         },
       ],
     };
+  },
+  methods: {
+    favoriteStatus(friendId) {
+      const identifiedFavoriteStatus = this.friendList.find(
+        (friend) => friend.id === friendId
+      );
+      identifiedFavoriteStatus.isFavorite = !identifiedFavoriteStatus.isFavorite;
+    },
   },
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 
 body {
@@ -69,7 +84,8 @@ header {
   list-style: none;
 }
 
-#app li {
+#app li,
+#app form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   margin: 1rem auto;
   border-radius: 10px;
@@ -92,8 +108,11 @@ header {
   border: 1px solid #ff0077;
   background-color: #ff0077;
   color: white;
-  padding: 0.05rem 1rem;
+  padding: 0.3rem 1rem;
+  margin: 0.3rem;
+  border-radius: 0.3rem;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
+  outline: none;
 }
 
 #app button:hover,
@@ -101,5 +120,25 @@ header {
   background-color: #ec3169;
   border-color: #ec3169;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+}
+
+#app input {
+  font: inherit;
+  font-size: 1rem;
+  border: 2px solid #ff0077;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  margin: 0.5rem;
+  outline: none;
+}
+
+#app input:focus {
+  outline: none;
+  border-color: #ff0077;
+  background-color: #ffd3e7;
+}
+
+#app label {
+  text-align: left;
 }
 </style>
