@@ -13,5 +13,6 @@
 ## **Vue-App**
   1. Creating a Application Setup
   2. Component Communication
-    a. Props
-    b. Emit Custom Event
+     - Props
+     - Custom Event
+       - Emit
