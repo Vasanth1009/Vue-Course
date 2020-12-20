@@ -10,6 +10,7 @@
   7. Behind Scenes using refs
   8. Components
 
+
 ## **Vue-App**
   1. Creating a Application Setup
   2. Component Communication
