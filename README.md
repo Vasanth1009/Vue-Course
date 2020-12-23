@@ -1,6 +1,6 @@
 # Vue-Course
 
-## **Basics**
+## **Basics - CDN**
   1. Data Binding 
   2. Event Binding
   3. Reactivity
@@ -11,7 +11,7 @@
   8. Components
 
 
-## **Vue-App**
+## **Vue-App - CLI**
   1. Creating a Application Setup
   2. Component Communication
      - Props
