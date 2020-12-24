@@ -1,4 +1,4 @@
-# Vue-Course
+# **Vue-Course**
 
 ## **Basics - CDN**
   1. Data Binding 
