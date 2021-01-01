@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import StoredResource from './components/Resources/StoredResource.vue';
-import TheHeader from './components/Layouts/TheHeader.vue';
+import StoredResource from './components/Resources/StoredResource';
+import TheHeader from './components/Layouts/TheHeader';
 
 export default {
   components: { StoredResource, TheHeader },
@@ -22,7 +22,7 @@ export default {
           id: 'google',
           title: 'Google',
           description: 'To Learn Doubts',
-          link: 'https://google.com'
+          link: 'https://google.org'
         }
       ]
     };

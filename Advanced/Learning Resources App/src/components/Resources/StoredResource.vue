@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import ResourceList from './Resource-List.vue';
+import ResourceList from './Resource-List';
 export default {
   components: { ResourceList },
   props: ['resources'],
