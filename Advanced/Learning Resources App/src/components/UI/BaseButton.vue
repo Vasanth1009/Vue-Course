@@ -14,11 +14,13 @@ button {
   font-family: inherit;
   background-color: #3a0061;
   border: 1px solid #3a0061;
-  border-radius: 5%;
-  font-weight: 400;
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: .05rem;
   color: white;
   cursor: pointer;
   outline: none;
+  margin: 0.5rem;
 }
 
 button:hover,

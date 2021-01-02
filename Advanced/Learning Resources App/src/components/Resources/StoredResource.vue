@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import ResourceList from './Resource-List';
+import ResourceList from './ResourceList';
 export default {
   components: { ResourceList },
-  props: ['resources'],
+  inject: ['resources'],
 };
 </script>
 
