@@ -17,3 +17,6 @@
      - Props
      - Custom Event
        - Emit
+
+## **Advanced - Project**
+  1. Learning Resources App
