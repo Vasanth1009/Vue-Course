@@ -1,9 +1,7 @@
 <template>
   <base-card>
-  <div>
     <base-button @click = "setTab('stored-resource')" :mode="switchStoredResource">Stored Resources</base-button>
     <base-button @click = "setTab('new-resource')" :mode="switchNewResource">Add Resource</base-button>
-  </div>
   </base-card>
   <component :is="selectedTab"></component>
 </template>
@@ -53,10 +51,3 @@ export default {
    
 }
 </script>
-
-<style scoped>
-div {
-    display: flex;
-    justify-content: center;
-}
-</style>
