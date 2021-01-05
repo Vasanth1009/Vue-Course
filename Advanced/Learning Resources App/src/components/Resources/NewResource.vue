@@ -1,7 +1,7 @@
 <template>
-    <base-dialog v-if="inputIsInValid" title="Invalid Input">
+    <base-dialog v-if="inputIsInValid" title="Invalid Input" @close="closeDialog">
       <template #default>
-        <p>Unfortunately, {{ validLabel }} not entered.</p>
+        <p>Unfortunately, <strong>{{ validLabel }}</strong> not entered.</p>
         <p>Please! Check and Make sure you enter atleast few characters then Add Resourse.</p>
       </template>
       <template #actions>
@@ -31,10 +31,7 @@
 
 
 <script>
-import BaseButton from '../UI/BaseButton.vue';
-import BaseDialog from '../UI/BaseDialog.vue';
 export default {
-	components: { BaseDialog, BaseButton },
   inject: ['addResource'],
   data() {
     return {
@@ -51,19 +48,19 @@ export default {
       const descValue = this.$refs.descInput.value;
       const linkValue = this.$refs.linkInput.value;
       if(titleValue.trim()==''&&descValue.trim()==''&&linkValue.trim()==''){
-        this.validLabel = 'Inputs are'
+        this.validLabel = 'Inputs'
         this.inputIsInValid = true;
       }else if((titleValue.trim()==''&&descValue.trim()=='')||(titleValue.trim()==''&&linkValue.trim()=='')||(descValue.trim()==''&&linkValue.trim()=='')){
-        this.validLabel = 'Some inputs are'
+        this.validLabel = 'Some inputs '
         this.inputIsInValid = true;
       }else if(titleValue.trim()==''){
-        this.validLabel = 'Title is';
+        this.validLabel = 'Title ';
         this.inputIsInValid = true;
       }else if(descValue.trim()==''){
-        this.validLabel = 'Description is';
+        this.validLabel = 'Description ';
         this.inputIsInValid = true;
       }else if(linkValue.trim()==''){
-        this.validLabel = 'Link is';
+        this.validLabel = 'Link ';
         this.inputIsInValid = true;
       }else{
         this.addResource(titleValue, descValue, linkValue);
