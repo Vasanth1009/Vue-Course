@@ -1,17 +1,26 @@
 <template>
+    <base-dialog v-if="inputIsInValid" title="Invalid Input">
+      <template #default>
+        <p>Unfortunately, {{ validLabel }} not entered.</p>
+        <p>Please! Check and Make sure you enter atleast few characters then Add Resourse.</p>
+      </template>
+      <template #actions>
+          <base-button @click="closeDialog">Ok</base-button>
+      </template>
+    </base-dialog>
     <base-card>
-        <form>
+        <form @submit.prevent="submitData">
             <div class="form-control">
                 <label for="title">Title</label>
-                <input id="title" name="title" type="text">
+                <input id="title" name="title" type="text" v-model="inputTitle" ref="titleInput">
             </div>
             <div class="form-control">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="3"></textarea>
+                <textarea id="description" name="description" rows="3" v-model="inputDesc" ref="descInput"></textarea>
             </div>
             <div class="form-control">
                 <label for="link">Link</label>
-                <input id="link" name="link" type="url">
+                <input id="link" name="link" type="url" v-model="inputLink" ref="linkInput">
             </div>
             <div>
                 <base-button type="submit">Add Resource</base-button>
@@ -19,6 +28,57 @@
         </form>
     </base-card>
 </template>
+
+
+<script>
+import BaseButton from '../UI/BaseButton.vue';
+import BaseDialog from '../UI/BaseDialog.vue';
+export default {
+	components: { BaseDialog, BaseButton },
+  inject: ['addResource'],
+  data() {
+    return {
+      inputTitle: '',
+      inputDesc: '',
+      inputLink: '',
+      inputIsInValid : false,
+      validLabel: ''
+    }
+  },
+  methods: {
+    submitData() {
+      const titleValue = this.$refs.titleInput.value;
+      const descValue = this.$refs.descInput.value;
+      const linkValue = this.$refs.linkInput.value;
+      if(titleValue.trim()==''&&descValue.trim()==''&&linkValue.trim()==''){
+        this.validLabel = 'Inputs are'
+        this.inputIsInValid = true;
+      }else if((titleValue.trim()==''&&descValue.trim()=='')||(titleValue.trim()==''&&linkValue.trim()=='')||(descValue.trim()==''&&linkValue.trim()=='')){
+        this.validLabel = 'Some inputs are'
+        this.inputIsInValid = true;
+      }else if(titleValue.trim()==''){
+        this.validLabel = 'Title is';
+        this.inputIsInValid = true;
+      }else if(descValue.trim()==''){
+        this.validLabel = 'Description is';
+        this.inputIsInValid = true;
+      }else if(linkValue.trim()==''){
+        this.validLabel = 'Link is';
+        this.inputIsInValid = true;
+      }else{
+        this.addResource(titleValue, descValue, linkValue);
+        this.inputTitle = '';
+        this.inputDesc = '';
+        this.inputLink= '';
+      }
+    },
+    closeDialog() {
+      this.inputIsInValid = false;
+    }
+  },  
+}
+</script>
+
 
 <style scoped>
 label {

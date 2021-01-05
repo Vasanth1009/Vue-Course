@@ -1,19 +1,19 @@
 <template>
   <ul>
-    <resource-list
+    <resource
       v-for="resource in resources"
       :key="resource.id"
       :title="resource.title"
       :description="resource.description"
       :link="resource.link"
-    ></resource-list>
+    ></resource>
   </ul>
 </template>
 
 <script>
-import ResourceList from './ResourceList';
+import Resource from './Resource';
 export default {
-  components: { ResourceList },
+  components: { Resource },
   inject: ['resources'],
 };
 </script>
