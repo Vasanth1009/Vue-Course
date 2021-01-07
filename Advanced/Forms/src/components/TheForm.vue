@@ -1,16 +1,18 @@
 <template>
-  <form>
-    <div class="form-control">
+  <form @submit.prevent="submitData">
+    <div class="form-control" :class="{ invalid: validateNameChecker === 'invalid' }">
       <label for="user-name">Your Name</label>
-      <input id="user-name" name="user-name" type="text" />
+      <input id="user-name" name="user-name" type="text" v-model.trim="userName" @blur="validateName"/>
+      <p v-if="validateNameChecker === 'invalid'">Please enter the valid name.</p>
     </div>
-    <div class="form-control">
+    <div class="form-control" :class="{ invalid: validateAgeChecker === 'invalid' }">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" />
+      <input id="age" name="age" type="number" v-model.trim="userAge" @blur="validateAge"/>
+      <p v-if="validateAgeChecker === 'invalid'">Please enter the valid age.(Between 12 to 100)</p>
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
-      <select id="referrer" name="referrer">
+      <select id="referrer" name="referrer" v-model="referrer">
         <option value="google">Google</option>
         <option value="wom">Word of mouth</option>
         <option value="newspaper">Newspaper</option>
@@ -19,30 +21,30 @@
     <div class="form-control">
       <h2>What are you interested in?</h2>
       <div>
-        <input id="interest-news" name="interest" type="checkbox" />
+        <input id="interest-news" name="interest" type="checkbox" value="news" v-model="interest" />
         <label for="interest-news">News</label>
       </div>
       <div>
-        <input id="interest-tutorials" name="interest" type="checkbox" />
+        <input id="interest-tutorials" name="interest" type="checkbox" value="tutorials" v-model="interest" />
         <label for="interest-tutorials">Tutorials</label>
       </div>
       <div>
-        <input id="interest-nothing" name="interest" type="checkbox" />
+        <input id="interest-nothing" name="interest" type="checkbox" value="nothing" v-model="interest" />
         <label for="interest-nothing">Nothing</label>
       </div>
     </div>
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input id="how-video" name="how" type="radio" />
+        <input id="how-video" name="how" type="radio" value="video" v-model="how"/>
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input id="how-blogs" name="how" type="radio" />
+        <input id="how-blogs" name="how" type="radio" value="blogs" v-model="how"/>
         <label for="how-blogs">Blogs</label>
       </div>
       <div>
-        <input id="how-other" name="how" type="radio" />
+        <input id="how-other" name="how" type="radio" value="other" v-model="how"/>
         <label for="how-other">Other</label>
       </div>
     </div>
@@ -51,6 +53,55 @@
     </div>
   </form>
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      userName: '',
+      userAge: null,
+      referrer: 'google',
+      interest: [],
+      how: null,
+      validateNameChecker: 'pending',
+      validateAgeChecker: 'pending'
+    }
+  },
+  methods: {
+    submitData() {
+      console.log(this.userName);
+      this.userName = '';
+      console.log(this.userAge);
+      this.userAge= null;
+      console.log(this.referrer);
+      this.referrer= 'google';
+      console.log(this.interest);
+      this.interest= [];
+      console.log(this.how);
+      this.how= null;
+    },
+    validateName() {
+      if(this.userName === '') {
+        this.validateNameChecker = 'invalid';
+      } else {
+        this.validateNameChecker = 'valid';
+      }
+    },
+    validateAge() {
+      if(this.userAge === null || this.userAge < 12 || this.userAge > 100 ) {
+        this.validateAgeChecker = 'invalid';
+      } else {
+        this.validateAgeChecker = 'valid';
+        
+      }
+      console.log(this.validateAgeChecker);
+    }
+  },
+}
+</script>
+
+
 
 <style scoped>
 form {
@@ -73,6 +124,11 @@ label {
 h2 {
   font-size: 1rem;
   margin: 0.5rem 0;
+}
+
+.form-control.invalid p {
+  color: red;
+  margin: 4px;
 }
 
 input,
