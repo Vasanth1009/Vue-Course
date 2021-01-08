@@ -65,17 +65,13 @@ export default {
         }),
       })
         .then((response) => {
-          if(response.ok){
-            throw new Error('Your saved successfully!');
-          }
-          else{
+          if(!response.ok){
             throw new Error('Could not save data! - Please try again later.');
           }
         })
         .catch((error) => {
           this.error = error.message;
         });
-
       this.enteredName = '';
       this.chosenRating = null;
     },
